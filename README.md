@@ -4,80 +4,82 @@
 
 <h1>Caly</h1>
 
-<p><strong>Il tuo denaro, giorno per giorno.</strong><br/>
-Calendario delle entrate e delle spese per Linux. Scuro, veloce, locale.</p>
+<p><strong>Your money, day by day.</strong><br/>
+A money calendar for Linux. Dark, fast, local.</p>
 
 [![Qt](https://img.shields.io/badge/Qt-6.5%2B-41CD52?logo=qt&logoColor=white)](https://qt.io)
 [![C++](https://img.shields.io/badge/C%2B%2B-20-00599C?logo=cplusplus&logoColor=white)](#)
 [![Linux](https://img.shields.io/badge/Linux-desktop-FCC624?logo=linux&logoColor=black)](#)
-[![License](https://img.shields.io/badge/license-MIT-5CE9BA)](#licenza)
+[![License](https://img.shields.io/badge/license-MIT-5CE9BA)](#license)
 
-<img src="docs/calendar.png" width="100%" alt="Calendario di Caly" />
+<img src="docs/calendar.png" width="100%" alt="Caly calendar" />
 
 </div>
 
 ---
 
-## Perché Caly
+## Why Caly
 
-I fogli di calcolo mentono: una spesa diventa una riga, il mese diventa una
-colonna, e a fine mese non sai più dove sono finiti i soldi. Caly ribalta la
-prospettiva — il mese è una griglia, ogni giorno mostra il suo netto, verde o
-rosso, con un'intensità proporzionale a quanto hai guadagnato o speso. Un colpo
-d'occhio e sai com'è andato novembre.
+Spreadsheets lie. An expense becomes a row, the month becomes a column, and by
+the end of it you no longer know where the money went. Caly flips the view: the
+month is a grid, every day shows its net, green or red, with an intensity
+proportional to what came in or went out. One glance and you know how November
+went.
 
-Tutto vive in un file JSON sul tuo computer. Nessun account, nessun cloud,
-nessuna telemetria.
+Everything lives in a single JSON file on your machine. No account, no cloud,
+no telemetry.
 
-## Funzioni
+## Features
 
-**Calendario**
-Griglia mensile lunedì-first, netto per giorno con intensità proporzionale,
-giorno corrente evidenziato, pannello laterale con i movimenti del giorno,
-aggiunta rapida e eliminazione con conferma.
+**Calendar**
+Monday-first month grid, per-day net with proportional intensity, today
+highlighted, a side panel with the day's transactions, quick add and delete
+with confirmation.
 
-**Movimenti**
-Elenco raggruppato per giorno con totale, ricerca istantanea, filtri
-tutti / entrate / uscite.
+**Transactions**
+Day-grouped list with running totals, instant search, filters for all / income
+/ expenses.
 
-**Analisi**
-Entrate, uscite, netto e tasso di risparmio dell'anno; flusso mensile a barre
-animate; ripartizione delle spese per categoria.
+**Insights**
+Year income, expenses, net and savings rate; animated monthly flow bars;
+spending breakdown by category.
 
-**Impostazioni**
-Nome, valuta (€, $, £, CHF), obiettivi mensili, export JSON, cancellazione dati
-con conferma.
+**Settings**
+Name, currency (€, $, £, CHF), monthly targets, JSON export, data reset with
+confirmation.
 
 **Onboarding**
-Quattro passi con saluto, nome, valuta, obiettivi e dati di esempio opzionali.
-Animazioni di ingresso, avanzamento con Invio, ritorno con Esc.
+Four steps: greeting, name, currency, targets, optional sample data. Enter
+animations, Enter to advance, Esc to go back.
 
-**Solo tuo**
-Un file, scrittura atomica con `QSaveFile`, zero rete. Il percorso è visibile
-nelle impostazioni e sovrascrivibile con `CALY_DATA_DIR`.
+**Yours only**
+One file, atomic writes via `QSaveFile`, zero network. The path is shown in
+settings and can be overridden with `CALY_DATA_DIR`.
 
-## Screenshot
+The interface is in Italian.
+
+## Screenshots
 
 <div align="center">
 
-| Onboarding | Movimenti |
+| Onboarding | Transactions |
 |:---:|:---:|
-| <img src="docs/onboarding.png" alt="Onboarding" /> | <img src="docs/movimenti.png" alt="Movimenti" /> |
+| <img src="docs/onboarding.png" alt="Onboarding" /> | <img src="docs/movimenti.png" alt="Transactions" /> |
 
-| Analisi | Impostazioni |
+| Insights | Settings |
 |:---:|:---:|
-| <img src="docs/insights.png" alt="Analisi" /> | <img src="docs/settings.png" alt="Impostazioni" /> |
+| <img src="docs/insights.png" alt="Insights" /> | <img src="docs/settings.png" alt="Settings" /> |
 
-| Nuovo movimento | |
+| New transaction | |
 |:---:|:---:|
-| <img src="docs/dialog.png" alt="Nuovo movimento" /> | |
+| <img src="docs/dialog.png" alt="New transaction" /> | |
 
 </div>
 
-## Installazione
+## Installation
 
-Serve **Qt 6.5+** con i moduli Core, Gui, Qml, Quick e QuickControls2, più
-CMake e un compilatore C++20.
+You need **Qt 6.5+** with the Core, Gui, Qml, Quick and QuickControls2 modules,
+plus CMake and a C++20 compiler.
 
 **Debian / Ubuntu**
 
@@ -99,79 +101,79 @@ cmake --build build -j"$(nproc)"
 ./build/caly
 ```
 
-**Installa nel sistema (opzionale)**
+**Install system-wide (optional)**
 
 ```bash
 sudo cmake --install build --prefix /usr/local
 ```
 
-Installa il binario, l'icona e la voce nel menu applicazioni.
+This installs the binary, the icon and the desktop entry.
 
-## Dati
+## Data
 
 ```
 ~/.local/share/caly/caly.json
 ```
 
-Sovrascrivibile con la variabile `CALY_DATA_DIR`:
+Override it with `CALY_DATA_DIR`:
 
 ```bash
-CALY_DATA_DIR=/tmp/prova ./build/caly
+CALY_DATA_DIR=/tmp/try ./build/caly
 ```
 
-L'export JSON finisce in `~/Documenti`.
+JSON exports go to `~/Documents`.
 
-## Scorciatoie
+## Shortcuts
 
-| Tasto | Azione |
+| Key | Action |
 |---|---|
-| `Ctrl+1` … `Ctrl+4` | Cambia sezione |
-| `Ctrl+N` | Nuovo movimento |
-| `Invio` | Avanza nell'onboarding |
-| `Esc` | Indietro nell'onboarding, chiude le conferme |
+| `Ctrl+1` … `Ctrl+4` | Switch section |
+| `Ctrl+N` | New transaction |
+| `Enter` | Advance onboarding |
+| `Esc` | Back in onboarding, close confirmations |
 
-## Sviluppo
+## Development
 
-Flag pensati per screenshot e verifiche automatiche:
+Flags built for screenshots and automated checks:
 
 ```bash
-./build/caly --demo                    # profilo demo con tre mesi di dati
-./build/caly --reset                   # cancella i dati prima dell'avvio
+./build/caly --demo                    # demo profile with three months of data
+./build/caly --reset                   # wipe data before launch
 ./build/caly --screenshot out.png --delay 1800
-./build/caly --page 2                  # apre una sezione (0-3)
-./build/caly --open-dialog             # apre il dialogo nuovo movimento
-./build/caly --open-day                # apre il pannello di oggi
-./build/caly --onboarding-step 2       # onboarding a un passo (0-3)
-./build/caly --autopilot               # completa l'onboarding da solo
-./build/caly --auto-add                # salva un movimento di prova
-./build/caly --auto-delete             # apre la conferma di eliminazione
-./build/caly --selftest                # test del backend, exit code 0/1
+./build/caly --page 2                  # open a section (0-3)
+./build/caly --open-dialog             # open the new-transaction dialog
+./build/caly --open-day                # open today's panel
+./build/caly --onboarding-step 2       # onboarding at a given step (0-3)
+./build/caly --autopilot               # complete onboarding automatically
+./build/caly --auto-add                # save a test transaction
+./build/caly --auto-delete             # open the delete confirmation
+./build/caly --selftest                # backend tests, exit code 0/1
 ```
 
-La suite `--selftest` copre onboarding, aggiunta e rimozione movimenti,
-riepiloghi mensili, export e reset.
+The `--selftest` suite covers onboarding, adding and removing transactions,
+monthly summaries, export and reset.
 
-## Struttura
+## Project layout
 
 ```
-src/backend.{h,cpp}   profilo, movimenti, persistenza JSON, aggregazioni
-src/main.cpp          entry point, flag CLI, icona, screenshot
-qml/Main.qml          shell: top bar, pagine, loader onboarding
-qml/Onboarding.qml    setup in quattro passi
-qml/CalendarPage.qml  griglia mensile e pannello giorno
+src/backend.{h,cpp}       profile, transactions, JSON persistence, aggregates
+src/main.cpp              entry point, CLI flags, icon, screenshots
+qml/Main.qml              shell: top bar, pages, onboarding loader
+qml/Onboarding.qml        four-step setup
+qml/CalendarPage.qml      month grid and day panel
 qml/TransactionsPage.qml
 qml/InsightsPage.qml
 qml/SettingsPage.qml
-qml/theme.js          colori, categorie, formattazione
-assets/               logo sorgente SVG e PNG
-docs/                 screenshot
+qml/theme.js              colors, categories, formatting
+assets/                   logo source SVG and PNGs
+docs/                     screenshots
 ```
 
-Costruito con Qt 6 e QML, tema scuro disegnato a mano, animazioni su
-`Behavior` e `NumberAnimation`, nessuna dipendenza oltre a Qt.
+Built with Qt 6 and QML, a hand-made dark theme, animations through `Behavior`
+and `NumberAnimation`, no dependencies beyond Qt.
 
-## Licenza
+## License
 
-MIT — vedi [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE).
 
-<div align="center"><sub>Fatto con calma, un mese alla volta.</sub></div>
+<div align="center"><sub>Made calmly, one month at a time.</sub></div>
