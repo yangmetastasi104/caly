@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Caly
+GenericName=Calendario del denaro
+Comment=Entrate e spese giorno per giorno, con analisi e obiettivi
+Exec=caly
+Icon=caly
+Terminal=false
+Categories=Office;Finance;Qt;
+Keywords=finanze;budget;calendario;spese;risparmio;
+StartupNotify=true
+StartupWMClass=Caly
